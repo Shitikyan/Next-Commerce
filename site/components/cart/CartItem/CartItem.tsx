@@ -9,6 +9,7 @@ import usePrice from '@framework/product/use-price'
 import useUpdateItem from '@framework/cart/use-update-item'
 import useRemoveItem from '@framework/cart/use-remove-item'
 import Quantity from '@components/ui/Quantity'
+import { useCart as useCustomCart } from '@components/cartContext'
 
 type ItemOption = {
   name: string
@@ -34,6 +35,7 @@ const CartItem = ({
   const [quantity, setQuantity] = useState<number>(1)
   const removeItem = useRemoveItem()
   const updateItem = useUpdateItem({ item })
+  const { cartInfo, setCartInfo } = useCustomCart()
 
   const { price } = usePrice({
     amount: item.price.value * quantity,
@@ -46,6 +48,7 @@ const CartItem = ({
   }: ChangeEvent<HTMLInputElement>) => {
     setQuantity(Number(value))
     await updateItem({ quantity: Number(value) })
+    console.log('fg')
   }
 
   const increaseQuantity = async (n = 1) => {

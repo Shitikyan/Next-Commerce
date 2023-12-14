@@ -18,6 +18,7 @@ const CartSidebarView: FC = () => {
   const { isLoading, isEmpty } = useCart()
   const { cartInfo } = useCustomCart()
   const [data, setData] = useState<any[]>([])
+  const [total, setTotal] = useState(0)
   const removeItem = useRemoveItem()
 
   useEffect(() => {
@@ -33,6 +34,16 @@ const CartSidebarView: FC = () => {
 
   const error = null
   const success = null
+
+  useEffect(() => {
+    let cartTotal = 0
+    if (cartInfo.length > 0) {
+      for (let i = 0; i < cartInfo.length; i++) {
+        cartTotal += cartInfo[i].total
+      }
+    }
+    setTotal(cartTotal)
+  }, [cartInfo])
 
   return (
     <CartProvider>
@@ -103,7 +114,7 @@ const CartSidebarView: FC = () => {
               </ul>
               <div className="flex justify-between border-t border-accent-2 py-3 font-bold mb-2">
                 <span>Total</span>
-                <span>{cartInfo.total} USD</span>
+                <span>{total} USD</span>
               </div>
               <div>
                 {process.env.COMMERCE_CUSTOMCHECKOUT_ENABLED ? (
