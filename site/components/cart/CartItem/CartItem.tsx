@@ -54,6 +54,10 @@ const CartItem = ({
   const increaseQuantity = async (n = 1) => {
     const val = Number(quantity) + n
     setQuantity(val)
+    let updatedCart = [...cartInfo]
+    updatedCart = updatedCart.filter((i) => i.id !== item.id)
+    updatedCart.push({ id: item.id, total: item.price.value * val })
+    setCartInfo(updatedCart)
     await updateItem({ quantity: val })
   }
 
@@ -63,12 +67,12 @@ const CartItem = ({
     try {
       let cartItem = localStorage.getItem('cart') ?? '[]'
       cartItem = JSON.parse(cartItem)
-      if (Array.isArray(cartItem)) {
-        const itemIdToRemove = item.id
-        let cart = cartItem.filter((cartItem) => cartItem !== itemIdToRemove)
-        let localStorageCart = JSON.stringify(cart)
-        localStorage.setItem('cart', localStorageCart)
-      }
+      console.log(cartItem)
+      let cart: any[] = [...cartItem]
+      cart = cart.filter((i: any) => i.id !== item.id)
+      setCartInfo(cart)
+      let localStorageCart = JSON.stringify(cart)
+      localStorage.setItem('cart', localStorageCart)
 
       await removeItem(item)
     } catch (error) {
@@ -76,7 +80,6 @@ const CartItem = ({
     }
   }
 
-  // TODO: Add a type for this
   const options = (item as any).options
 
   return (

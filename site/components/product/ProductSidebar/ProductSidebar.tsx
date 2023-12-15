@@ -33,9 +33,12 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
       let newCartArray = []
       if (cartItems != null) {
         const cartArray = JSON.parse(cartItems)
-        newCartArray = [...cartArray, String(product.id)]
+        newCartArray = [
+          ...cartArray,
+          { id: String(product.id), total: product.price.value },
+        ]
       } else {
-        newCartArray = [String(product.id)]
+        newCartArray = [{ id: String(product.id), total: product.price.value }]
       }
       let localStorageCart = JSON.stringify(newCartArray)
       localStorage.setItem('cart', localStorageCart)
