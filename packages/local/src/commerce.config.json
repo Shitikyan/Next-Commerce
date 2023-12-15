@@ -1,7 +1,7 @@
 {
   "provider": "local",
   "features": {
-    "wishlist": true,
+    "wishlist": false,
     "cart": true,
     "search": true,
     "customerAuth": true,

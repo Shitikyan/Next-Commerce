@@ -13,20 +13,20 @@
         {
           "url": "/assets/drop-shirt-0.png",
           "altText": "Shirt",
-          "width": 1000,
-          "height": 1000
+          "width": 700,
+          "height": 700
         },
         {
           "url": "/assets/drop-shirt-1.png",
           "altText": "Shirt",
-          "width": 1000,
-          "height": 1000
+          "width": 700,
+          "height": 700
         },
         {
           "url": "/assets/drop-shirt-2.png",
           "altText": "Shirt",
-          "width": 1000,
-          "height": 1000
+          "width": 700,
+          "height": 700
         }
       ],
       "variants": [
@@ -55,7 +55,7 @@
           "values": [
             {
               "label": "color",
-              "hexColors": ["#222"]
+              "hexColors": ["#1755C8"]
             }
           ]
         },
